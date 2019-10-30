@@ -1,0 +1,19 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "alexacog-dev-20191030103926-authRole",
+            "UnauthRoleArn": "arn:aws:iam::299854659728:role/alexacog-dev-20191030103926-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::299854659728:role/alexacog-dev-20191030103926-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "alexacog-dev-20191030103926-deployment",
+            "UnauthRoleName": "alexacog-dev-20191030103926-unauthRole",
+            "StackName": "alexacog-dev-20191030103926",
+            "StackId": "arn:aws:cloudformation:eu-west-1:299854659728:stack/alexacog-dev-20191030103926/8b85c690-fb01-11e9-9941-020193028d12"
+        },
+        "categories": {
+            "auth": {
+                "alexacog14187310": {}
+            }
+        }
+    }
+}
