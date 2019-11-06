@@ -1,36 +1,36 @@
 import React from "react";
 import { SignIn } from "aws-amplify-react";
 import './App.css';
-import { Form,Button,Container,Row,Col  } from 'react-bootstrap';
+import { Button,Container,Row,Col  } from 'react-bootstrap';
  import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
  import Amplify, { Auth, Hub } from 'aws-amplify';
 import awsconfig from './aws-exports';
 
 
- const oauth = {
-  'domain': 'xell-alexa.auth.us-east-1.amazoncognito.com',
-  'scope': ['email', 'openid', 'aws.cognito.signin.user.admin'],
-  'redirectSignIn': 'https://pitangui.amazon.com/api/skill/link/MAXBIFIBSN64H',
-  'redirectSignOut': 'http://localhost:3000/',
-  'responseType': 'code' // or 'token', note that REFRESH token will only be generated when the responseType is code
-};
-Amplify.configure(awsconfig);
-// Auth.configure({ oauth });
-Amplify.configure({
-  Auth: {
-    oauth: oauth
-  },
-});
+//  const oauth = {
+//   'domain': 'xell-alexa.auth.us-east-1.amazoncognito.com',
+//   'scope': ['email', 'openid', 'aws.cognito.signin.user.admin'],
+//   'redirectSignIn': 'https://pitangui.amazon.com/api/skill/link/MAXBIFIBSN64H',
+//   'redirectSignOut': 'http://localhost:3000/',
+//   'responseType': 'code' // or 'token', note that REFRESH token will only be generated when the responseType is code
+// };
+// Amplify.configure(awsconfig);
+// // Auth.configure({ oauth });
+// Amplify.configure({
+//   Auth: {
+//     oauth: oauth
+//   },
+// });
 
 export class CustomSignIn extends SignIn {
   constructor(props) {
    // debugger;
     super(props);
-    console.log(this.props);
+    //console.log(this.props);
     this.signOut = this.signOut.bind(this);
     // let the Hub module listen on Auth events
     Hub.listen('auth', (data) => {
-      debugger;
+      //debugger;
       switch (data.payload.event) {
         case 'signIn':
           this.setState({ authState: 'signedIn', authData: data.payload.data });
@@ -47,28 +47,32 @@ export class CustomSignIn extends SignIn {
     this.state = {
       authState: 'loading',
       authData: null,
-      authError: null
+      authError: null,
+      user: null
     }
     this._validAuthStates = ["signIn", "signedOut", "signedUp"];
 
   }
 
-    componentDidMount() {
-    console.log('on component mount');
-    // check the current user when the App component is loaded
-    Auth.currentAuthenticatedUser().then(user => {
-      console.log(user);
-      this.setState({ authState: 'signedIn' });
-    }).catch(e => {
-      console.log(e);
-      this.setState({ authState: 'signIn' });
-    });
+  // async componentDidMount() {
+  //   console.log('on component mount');
+  //   // check the current user when the App component is loaded
+  //   Auth.currentAuthenticatedUser().then(user => {
+  //     console.log(user);
+  //      this.setState({ user: user });
+  //     console.log("=================  Access Token Groups =============")
+  //      console.log(user.signInUserSession.accessToken.payload['cognito:groups']);
+  //     console.log("=======================================")
+  //     console.log("================= Id token Groups =============")
+  //      console.log(user.signInUserSession.idToken.payload['cognito:groups']);
+  //     console.log("=======================================")
+  //     this.setState({ authState: 'signedIn' });
+  //   }).catch(e => {
+  //     console.log(e);
+  //     this.setState({ authState: 'signIn' });
+  //   });
 
-    Auth.currentAuthenticatedUser()
-      .then(user => this.setState({ user }))
-      .catch(() => console.log("Not signed in"));
-
-  }
+  //}
 
 
 

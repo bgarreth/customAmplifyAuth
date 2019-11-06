@@ -1,9 +1,8 @@
 import React from "react";
 import Amplify from "aws-amplify";
-import { withAuthenticator,SignIn,Authenticator,Greetings} from "aws-amplify-react";
+import { withAuthenticator,Authenticator,Greetings} from "aws-amplify-react";
 import { CustomSignIn } from "./CustomSignIn";
 import Content from "./Content";
-import { withOAuth } from 'aws-amplify-react';
 import config from "./aws-exports";
 Amplify.configure(config);
 
