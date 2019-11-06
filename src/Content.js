@@ -4,6 +4,7 @@ import  {Auth } from 'aws-amplify';
 class Content extends React.Component {
 constructor() {
  super();
+ //testing
  //set the initial state 
  this.state = { user: null, username: null, userGroups: [] };
 }
